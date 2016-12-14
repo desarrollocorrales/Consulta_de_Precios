@@ -1,0 +1,11 @@
+G:\Github\Consulta_de_Precios\ConsultaPrecios\bin\Debug\ConsultaPrecios.exe.config
+G:\Github\Consulta_de_Precios\ConsultaPrecios\bin\Debug\ConsultaPrecios.exe
+G:\Github\Consulta_de_Precios\ConsultaPrecios\bin\Debug\ConsultaPrecios.pdb
+G:\Github\Consulta_de_Precios\ConsultaPrecios\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.Form1.resources
+G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.GUI.Form_Config.resources
+G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.Properties.Resources.resources
+G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.csproj.GenerateResource.Cache
+G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.exe.licenses
+G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.exe
+G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.pdb
