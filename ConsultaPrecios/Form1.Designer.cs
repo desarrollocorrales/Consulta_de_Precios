@@ -75,60 +75,64 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 32F);
-            this.label3.Location = new System.Drawing.Point(28, 30);
+            this.label3.Location = new System.Drawing.Point(465, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 52);
             this.label3.TabIndex = 4;
             this.label3.Text = "Lista";
+            this.label3.Visible = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Font = new System.Drawing.Font("Tahoma", 32F);
-            this.label4.Location = new System.Drawing.Point(357, 30);
+            this.label4.Location = new System.Drawing.Point(455, 119);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(185, 52);
             this.label4.TabIndex = 5;
             this.label4.Text = "Mayoreo";
+            this.label4.Visible = false;
             // 
             // tbLista
             // 
-            this.tbLista.Font = new System.Drawing.Font("Tahoma", 50F);
-            this.tbLista.Location = new System.Drawing.Point(336, 85);
+            this.tbLista.Font = new System.Drawing.Font("Tahoma", 60F);
+            this.tbLista.Location = new System.Drawing.Point(79, 57);
             this.tbLista.Name = "tbLista";
             this.tbLista.ReadOnly = true;
-            this.tbLista.Size = new System.Drawing.Size(309, 88);
+            this.tbLista.Size = new System.Drawing.Size(496, 104);
             this.tbLista.TabIndex = 6;
             this.tbLista.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbMayoreo
             // 
             this.tbMayoreo.Font = new System.Drawing.Font("Tahoma", 50F);
-            this.tbMayoreo.Location = new System.Drawing.Point(11, 86);
+            this.tbMayoreo.Location = new System.Drawing.Point(341, 92);
             this.tbMayoreo.Name = "tbMayoreo";
             this.tbMayoreo.ReadOnly = true;
             this.tbMayoreo.Size = new System.Drawing.Size(309, 88);
             this.tbMayoreo.TabIndex = 7;
             this.tbMayoreo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbMayoreo.Visible = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tbMayoreo);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tbLista);
             this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.tbMayoreo);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 24F);
             this.groupBox1.Location = new System.Drawing.Point(12, 364);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(656, 186);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Precios";
+            this.groupBox1.Text = "Precio";
             // 
             // lbArticulo
             // 
             this.lbArticulo.Font = new System.Drawing.Font("Tahoma", 36F);
-            this.lbArticulo.Location = new System.Drawing.Point(12, 112);
+            this.lbArticulo.Location = new System.Drawing.Point(6, 112);
             this.lbArticulo.Name = "lbArticulo";
             this.lbArticulo.Size = new System.Drawing.Size(656, 249);
             this.lbArticulo.TabIndex = 9;

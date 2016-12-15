@@ -39,9 +39,12 @@ namespace ConsultaPrecios
                         throw new Exception("No ha definido las conexiones");
                     }
 
-                    Firebird_Controller fireCon = new Firebird_Controller();
-
+                    if (this.tbCodigo.Text.Substring(0, 2).Equals("20"))
+                        if (this.tbCodigo.Text.Length < 7) throw new Exception("Código incompleto");                    
+                    
                     string codigo = this.tbCodigo.Text.Substring(0, 2).Equals("20") ? this.tbCodigo.Text.Substring(2, 5) : this.tbCodigo.Text;
+
+                    Controladores.Firebird_Controller fireCon = new Firebird_Controller();
 
                     Precios precio = fireCon.getPrecios(codigo);
 
@@ -66,7 +69,10 @@ namespace ConsultaPrecios
             }
             catch (Exception E)
             {
-                MessageBox.Show(E.Message,"Consulta de Precios");
+                MessageBox.Show(E.Message, "Consulta de Precios");
+
+                // limpia text_box
+                this.tbCodigo.Text = string.Empty;
             }
         }
 

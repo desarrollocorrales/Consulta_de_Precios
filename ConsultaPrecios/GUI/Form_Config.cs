@@ -27,10 +27,31 @@ namespace ConsultaPrecios.GUI
                 this.tbServidor.Text = Properties.Settings.Default.servidor;
                 this.tbUsuario.Text = Properties.Settings.Default.usuario;
                 this.tbBaseDatos.Text = Properties.Settings.Default.baseDatos;
+
+                cargaCombos();
+
+                var idLista = Properties.Settings.Default.idLista;
+                var idMayoreo = Properties.Settings.Default.idMayoreo;
+
+                this.cbMayoreo.SelectedValue = Convert.ToInt64(idMayoreo);
+                this.cbLista.SelectedValue = Convert.ToInt64(idLista);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            if (this.cbMayoreo.SelectedIndex == -1)
+                throw new Exception("Seleccione una opcion para de Mayoreo");
+
+            if (this.cbLista.SelectedIndex == -1)
+                throw new Exception("Seleccione una opcion para de Lista");
+
+            guardaInfo();
+
+            this.Close();
+        }
+
+        private void guardaInfo()
         {
             try
             {
@@ -49,12 +70,15 @@ namespace ConsultaPrecios.GUI
                 if (string.IsNullOrEmpty(this.tbBaseDatos.Text))
                     throw new Exception("Ingrese la Base de Datos");
 
+
                 // ingresar los valores en el archivo settings.settings
                 Properties.Settings.Default.servidor = this.tbServidor.Text;
                 Properties.Settings.Default.usuario = this.tbUsuario.Text;
                 Properties.Settings.Default.contrasenia = this.tbContrasenia.Text;
                 Properties.Settings.Default.puerto = this.tbPuerto.Text;
                 Properties.Settings.Default.baseDatos = this.tbBaseDatos.Text;
+                Properties.Settings.Default.idLista = Convert.ToString(this.cbLista.SelectedValue);
+                Properties.Settings.Default.idMayoreo = Convert.ToString(this.cbMayoreo.SelectedValue);
 
                 Properties.Settings.Default.Save();
 
@@ -65,7 +89,38 @@ namespace ConsultaPrecios.GUI
                 Microsip.Puerto = Convert.ToInt16(this.tbPuerto.Text);
                 Microsip.BaseDeDatos = this.tbBaseDatos.Text;
 
-                this.Close();
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show("Configuración", E.Message);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // valida y guarda la configuracion de conexion
+            guardaInfo();
+
+            // carga informacion en los combos
+            cargaCombos();
+        }
+
+        private void cargaCombos()
+        {
+            try
+            {
+
+                Controladores.Firebird_Controller control = new Controladores.Firebird_Controller();
+
+                // carga los combos
+                this.cbLista.DataSource = control.getPreciosLM();
+                this.cbLista.DisplayMember = "nombre";
+                this.cbLista.ValueMember = "precioEmpresaId";
+
+                this.cbMayoreo.DataSource = control.getPreciosLM();
+                this.cbMayoreo.DisplayMember = "nombre";
+                this.cbMayoreo.ValueMember = "precioEmpresaId";
+
             }
             catch (Exception E)
             {

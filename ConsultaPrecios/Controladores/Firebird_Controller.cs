@@ -49,14 +49,14 @@ namespace ConsultaPrecios.Controladores
                         " from claves_articulos ca" +
                         " inner join articulos a on (ca.articulo_id = a.articulo_id)" +
                         " left join " +
-	                        " (select articulo_id, precio from PRECIOS_ARTICULOS where PRECIO_EMPRESA_id = 243) mayo" +
+	                        " (select articulo_id, precio from PRECIOS_ARTICULOS where PRECIO_EMPRESA_id = {0}) mayo" +
                             " on (ca.articulo_id = mayo.articulo_id)" +
                         " left join " +
-	                        " (select articulo_id, precio from PRECIOS_ARTICULOS where PRECIO_EMPRESA_id = 42) lista" +
+	                        " (select articulo_id, precio from PRECIOS_ARTICULOS where PRECIO_EMPRESA_id = {1}) lista" +
                             " on (ca.articulo_id = lista.articulo_id)" +
-                        " where CLAVE_ARTICULO = '{0}'";
-            
-            sql = string.Format(sql, codigo);
+                        " where CLAVE_ARTICULO = '{2}'";
+
+            sql = string.Format(sql, Properties.Settings.Default.idMayoreo, Properties.Settings.Default.idLista, codigo);
 
             FbComm.CommandText = sql;
 
@@ -73,6 +73,37 @@ namespace ConsultaPrecios.Controladores
                 result.cveArticulo = Convert.ToString(fila["clave_articulo"]);
                 result.precioLista = fila["precio_lista"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["precio_lista"]);
                 result.precioMay = fila["precio_mayoreo"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["precio_mayoreo"]);
+            }
+
+            FbConn.Close();
+
+            return result;
+        }
+
+        public List<Combos> getPreciosLM()
+        {
+            List<Combos> result = new List<Combos>();
+            Combos ent;
+
+            FbConn.Open();
+            FbComm.Connection = FbConn;
+
+            string sql = " SELECT precio_empresa_id, nombre FROM PRECIOS_EMPRESA";
+            
+            FbComm.CommandText = sql;
+
+            FbAdapter.SelectCommand = FbComm;
+
+            DataTable dtConsulta = new DataTable();
+            FbAdapter.Fill(dtConsulta);
+
+            foreach (DataRow fila in dtConsulta.Rows)
+            {
+                ent = new Combos();
+                ent.nombre = Convert.ToString(fila["nombre"]);
+                ent.precioEmpresaId = fila["precio_empresa_id"] == DBNull.Value ? 0 : Convert.ToInt64(fila["precio_empresa_id"]);
+
+                result.Add(ent);
             }
 
             FbConn.Close();
