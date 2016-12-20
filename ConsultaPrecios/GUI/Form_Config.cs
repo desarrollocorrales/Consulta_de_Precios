@@ -32,9 +32,11 @@ namespace ConsultaPrecios.GUI
 
                 var idLista = Properties.Settings.Default.idLista;
                 var idMayoreo = Properties.Settings.Default.idMayoreo;
+                var almacen = Properties.Settings.Default.almacen;
 
-                this.cbMayoreo.SelectedValue = Convert.ToInt64(idMayoreo);
-                this.cbLista.SelectedValue = Convert.ToInt64(idLista);
+                this.cbMayoreo.SelectedValue = Convert.ToInt64(string.IsNullOrEmpty(idMayoreo) ? "0" : idMayoreo);
+                this.cbLista.SelectedValue = Convert.ToInt64(string.IsNullOrEmpty(idLista) ? "0" : idLista);
+                this.cbAlmacen.SelectedValue = Convert.ToInt64(string.IsNullOrEmpty(almacen) ? "0" : almacen);
             }
         }
 
@@ -79,6 +81,7 @@ namespace ConsultaPrecios.GUI
                 Properties.Settings.Default.baseDatos = this.tbBaseDatos.Text;
                 Properties.Settings.Default.idLista = Convert.ToString(this.cbLista.SelectedValue);
                 Properties.Settings.Default.idMayoreo = Convert.ToString(this.cbMayoreo.SelectedValue);
+                Properties.Settings.Default.almacen = Convert.ToString(this.cbAlmacen.SelectedValue);
 
                 Properties.Settings.Default.Save();
 
@@ -120,6 +123,11 @@ namespace ConsultaPrecios.GUI
                 this.cbMayoreo.DataSource = control.getPreciosLM();
                 this.cbMayoreo.DisplayMember = "nombre";
                 this.cbMayoreo.ValueMember = "precioEmpresaId";
+
+                // carga combo de almacen
+                this.cbAlmacen.DataSource = control.getAlmacen();
+                this.cbAlmacen.DisplayMember = "nombre";
+                this.cbAlmacen.ValueMember = "almacenId";
 
             }
             catch (Exception E)

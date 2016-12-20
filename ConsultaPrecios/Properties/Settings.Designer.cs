@@ -106,5 +106,17 @@ namespace ConsultaPrecios.Properties {
                 this["idMayoreo"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string almacen {
+            get {
+                return ((string)(this["almacen"]));
+            }
+            set {
+                this["almacen"] = value;
+            }
+        }
     }
 }

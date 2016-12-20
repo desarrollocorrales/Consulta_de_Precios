@@ -45,12 +45,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.cbMayoreo = new System.Windows.Forms.ComboBox();
             this.cbLista = new System.Windows.Forms.ComboBox();
+            this.cbAlmacen = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(527, 459);
+            this.button1.Location = new System.Drawing.Point(527, 538);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(200, 61);
             this.button1.TabIndex = 0;
@@ -162,7 +164,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Tahoma", 20.25F);
-            this.button2.Location = new System.Drawing.Point(527, 316);
+            this.button2.Location = new System.Drawing.Point(527, 348);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(200, 61);
             this.button2.TabIndex = 12;
@@ -210,11 +212,33 @@
             this.cbLista.Size = new System.Drawing.Size(294, 41);
             this.cbLista.TabIndex = 16;
             // 
+            // cbAlmacen
+            // 
+            this.cbAlmacen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAlmacen.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbAlmacen.FormattingEnabled = true;
+            this.cbAlmacen.Location = new System.Drawing.Point(207, 421);
+            this.cbAlmacen.Name = "cbAlmacen";
+            this.cbAlmacen.Size = new System.Drawing.Size(294, 41);
+            this.cbAlmacen.TabIndex = 18;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 20F);
+            this.label9.Location = new System.Drawing.Point(12, 424);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(125, 33);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "Almacen:";
+            // 
             // Form_Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(739, 532);
+            this.ClientSize = new System.Drawing.Size(739, 611);
+            this.Controls.Add(this.cbAlmacen);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.cbLista);
             this.Controls.Add(this.cbMayoreo);
             this.Controls.Add(this.label8);
@@ -261,5 +285,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbMayoreo;
         private System.Windows.Forms.ComboBox cbLista;
+        private System.Windows.Forms.ComboBox cbAlmacen;
+        private System.Windows.Forms.Label label9;
     }
 }

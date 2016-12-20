@@ -37,6 +37,7 @@
             this.tbMayoreo = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lbArticulo = new System.Windows.Forms.Label();
+            this.lbExistencia = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,7 +67,7 @@
             this.tbCodigo.Font = new System.Drawing.Font("Tahoma", 22F);
             this.tbCodigo.Location = new System.Drawing.Point(133, 60);
             this.tbCodigo.Name = "tbCodigo";
-            this.tbCodigo.Size = new System.Drawing.Size(535, 43);
+            this.tbCodigo.Size = new System.Drawing.Size(622, 43);
             this.tbCodigo.TabIndex = 3;
             this.tbCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -75,7 +76,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 32F);
-            this.label3.Location = new System.Drawing.Point(465, 119);
+            this.label3.Location = new System.Drawing.Point(520, 98);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(110, 52);
             this.label3.TabIndex = 4;
@@ -87,7 +88,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Font = new System.Drawing.Font("Tahoma", 32F);
-            this.label4.Location = new System.Drawing.Point(455, 119);
+            this.label4.Location = new System.Drawing.Point(510, 98);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(185, 52);
             this.label4.TabIndex = 5;
@@ -97,17 +98,17 @@
             // tbLista
             // 
             this.tbLista.Font = new System.Drawing.Font("Tahoma", 60F);
-            this.tbLista.Location = new System.Drawing.Point(79, 57);
+            this.tbLista.Location = new System.Drawing.Point(373, 41);
             this.tbLista.Name = "tbLista";
             this.tbLista.ReadOnly = true;
-            this.tbLista.Size = new System.Drawing.Size(496, 104);
+            this.tbLista.Size = new System.Drawing.Size(364, 104);
             this.tbLista.TabIndex = 6;
             this.tbLista.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbMayoreo
             // 
             this.tbMayoreo.Font = new System.Drawing.Font("Tahoma", 50F);
-            this.tbMayoreo.Location = new System.Drawing.Point(341, 92);
+            this.tbMayoreo.Location = new System.Drawing.Point(396, 71);
             this.tbMayoreo.Name = "tbMayoreo";
             this.tbMayoreo.ReadOnly = true;
             this.tbMayoreo.Size = new System.Drawing.Size(309, 88);
@@ -117,6 +118,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lbExistencia);
             this.groupBox1.Controls.Add(this.tbLista);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.tbMayoreo);
@@ -124,7 +126,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 24F);
             this.groupBox1.Location = new System.Drawing.Point(12, 364);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(656, 186);
+            this.groupBox1.Size = new System.Drawing.Size(743, 162);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Precio";
@@ -134,16 +136,26 @@
             this.lbArticulo.Font = new System.Drawing.Font("Tahoma", 36F);
             this.lbArticulo.Location = new System.Drawing.Point(6, 112);
             this.lbArticulo.Name = "lbArticulo";
-            this.lbArticulo.Size = new System.Drawing.Size(656, 249);
+            this.lbArticulo.Size = new System.Drawing.Size(749, 249);
             this.lbArticulo.TabIndex = 9;
             this.lbArticulo.Text = "ARTICULO_NOMBRE";
             this.lbArticulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbExistencia
+            // 
+            this.lbExistencia.Font = new System.Drawing.Font("Tahoma", 60F);
+            this.lbExistencia.Location = new System.Drawing.Point(6, 41);
+            this.lbExistencia.Name = "lbExistencia";
+            this.lbExistencia.ReadOnly = true;
+            this.lbExistencia.Size = new System.Drawing.Size(361, 104);
+            this.lbExistencia.TabIndex = 8;
+            this.lbExistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 563);
+            this.ClientSize = new System.Drawing.Size(767, 537);
             this.Controls.Add(this.lbArticulo);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tbCodigo);
@@ -171,6 +183,7 @@
         private System.Windows.Forms.TextBox tbMayoreo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lbArticulo;
+        private System.Windows.Forms.TextBox lbExistencia;
 
     }
 }

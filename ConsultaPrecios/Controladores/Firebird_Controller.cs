@@ -45,7 +45,7 @@ namespace ConsultaPrecios.Controladores
             FbComm.Connection = FbConn;
 
             string sql = 
-                        " select ca.clave_articulo, a.nombre as articulo, mayo.PRECIO precio_mayoreo, lista.precio precio_lista" +
+                        " select ca.articulo_id, ca.clave_articulo, a.nombre as articulo, mayo.PRECIO precio_mayoreo, lista.precio precio_lista" +
                         " from claves_articulos ca" +
                         " inner join articulos a on (ca.articulo_id = a.articulo_id)" +
                         " left join " +
@@ -69,10 +69,20 @@ namespace ConsultaPrecios.Controladores
 
             foreach (DataRow fila in dtConsulta.Rows)
             {
+                // obtener precio con iva(s)
+                decimal precioCons = fila["precio_lista"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["precio_lista"]);
+                long articuloId = Convert.ToInt64(fila["articulo_id"]);
+
+                decimal precioLista = this.obtPrecioIvas(precioCons, articuloId);
+
+                decimal existencia = this.obtExistencia(articuloId);
+
                 result.articulo = Convert.ToString(fila["articulo"]);
                 result.cveArticulo = Convert.ToString(fila["clave_articulo"]);
-                result.precioLista = fila["precio_lista"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["precio_lista"]);
+                //result.precioLista = fila["precio_lista"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["precio_lista"]);
+                result.precioLista = precioLista;
                 result.precioMay = fila["precio_mayoreo"] == DBNull.Value ? 0 : Convert.ToDecimal(fila["precio_mayoreo"]);
+                result.existencia = existencia;
             }
 
             FbConn.Close();
@@ -80,6 +90,97 @@ namespace ConsultaPrecios.Controladores
             return result;
         }
 
+        private decimal obtExistencia(long articuloId)
+        {
+            decimal result = 0;
+
+            string sql = "SELECT existencia FROM EXIVAL_ART({0}, {1}, cast('Now' as date), 'S')";
+
+            sql = string.Format(sql, articuloId, Properties.Settings.Default.almacen);
+
+            FbComm.CommandText = sql;
+
+            FbAdapter.SelectCommand = FbComm;
+
+            DataTable dtConsulta = new DataTable();
+            FbAdapter.Fill(dtConsulta);
+
+            if (dtConsulta.Rows.Count == 0) return 0;
+
+            foreach (DataRow fila in dtConsulta.Rows)
+            {
+                result = Convert.ToDecimal(fila["existencia"]);
+            }
+
+            return result;
+
+        }
+
+        private decimal obtPrecioIvas(decimal precioCons, long articuloId)
+        {
+            decimal result = 0;
+
+            if (precioCons <= 0) return 0;
+
+            // obtiene los valores de iva
+            List<Decimal> ivas = this.obtIvas(articuloId);
+
+            result = this.calcIvas(precioCons, ivas);
+
+            return result;
+        }
+
+        private decimal calcIvas(decimal precioCons, List<Decimal> ivas)
+        {
+            decimal result = precioCons, sum = 0;
+
+            foreach(decimal d in ivas)
+            {
+                sum = sum + ((d/100) * precioCons);
+            }
+
+            return result + sum;
+        }
+
+        // obtiene una lista de ivas que pueda tener un articulo
+        // IVA, IEPS
+        private List<Decimal> obtIvas(long articuloId)
+        {
+            List<Decimal> result = new List<Decimal>();
+
+            string sql =
+                        " SELECT " +
+                        "  IA.ARTICULO_ID, " +
+                        "  I.NOMBRE, " +
+                        "  I.PCTJE_IMPUESTO, " +
+                        "  A.NOMBRE " +
+                        "FROM " +
+                        "  IMPUESTOS_ARTICULOS IA " +
+                        "  INNER JOIN IMPUESTOS I ON (IA.IMPUESTO_ID = I.IMPUESTO_ID) " +
+                        "  INNER JOIN ARTICULOS A ON (IA.ARTICULO_ID = A.ARTICULO_ID) " +
+                        "WHERE " +
+                        "  A.ARTICULO_ID = {0}";
+
+            sql = string.Format(sql, articuloId);
+
+            FbComm.CommandText = sql;
+
+            FbAdapter.SelectCommand = FbComm;
+
+            DataTable dtConsulta = new DataTable();
+            FbAdapter.Fill(dtConsulta);
+
+            if (dtConsulta.Rows.Count == 0) return new List<Decimal>();
+
+            foreach (DataRow fila in dtConsulta.Rows)
+            {
+                result.Add(Convert.ToDecimal(fila["PCTJE_IMPUESTO"]));
+            }
+            
+            return result;
+        }
+
+        // obtiene los precios de la empresa
         public List<Combos> getPreciosLM()
         {
             List<Combos> result = new List<Combos>();
@@ -102,6 +203,38 @@ namespace ConsultaPrecios.Controladores
                 ent = new Combos();
                 ent.nombre = Convert.ToString(fila["nombre"]);
                 ent.precioEmpresaId = fila["precio_empresa_id"] == DBNull.Value ? 0 : Convert.ToInt64(fila["precio_empresa_id"]);
+
+                result.Add(ent);
+            }
+
+            FbConn.Close();
+
+            return result;
+        }
+
+        // obtiene los almacenes de la base
+        public List<Almacen> getAlmacen()
+        {
+            List<Almacen> result = new List<Almacen>();
+            Almacen ent;
+
+            FbConn.Open();
+            FbComm.Connection = FbConn;
+
+            string sql = "select almacen_id, nombre from ALMACENES";
+
+            FbComm.CommandText = sql;
+
+            FbAdapter.SelectCommand = FbComm;
+
+            DataTable dtConsulta = new DataTable();
+            FbAdapter.Fill(dtConsulta);
+
+            foreach (DataRow fila in dtConsulta.Rows)
+            {
+                ent = new Almacen();
+                ent.nombre = Convert.ToString(fila["nombre"]);
+                ent.almacenId = fila["almacen_id"] == DBNull.Value ? 0 : Convert.ToInt64(fila["almacen_id"]);
 
                 result.Add(ent);
             }

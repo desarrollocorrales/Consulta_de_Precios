@@ -39,6 +39,11 @@ namespace ConsultaPrecios
                         throw new Exception("No ha definido las conexiones");
                     }
 
+                    if (this.tbCodigo.Text.Length == 0)
+                    {
+                        throw new Exception("Ingrese el código");
+                    }
+
                     if (this.tbCodigo.Text.Substring(0, 2).Equals("20"))
                         if (this.tbCodigo.Text.Length < 7) throw new Exception("Código incompleto");                    
                     
@@ -53,13 +58,10 @@ namespace ConsultaPrecios
                         this.tbLista.Text = string.Format("{0:C}", precio.precioLista);
                         this.tbMayoreo.Text = string.Format("{0:C}", precio.precioMay);
                         this.lbArticulo.Text = precio.articulo;
+                        this.lbExistencia.Text = Convert.ToString(precio.existencia);
                     }
                     else
                     {
-                        this.tbLista.Text = string.Empty;
-                        this.tbMayoreo.Text = string.Empty;
-                        this.lbArticulo.Text = string.Empty;
-
                         throw new Exception("Sin información sobre el articulo");
                     }
 
@@ -70,6 +72,11 @@ namespace ConsultaPrecios
             catch (Exception E)
             {
                 MessageBox.Show(E.Message, "Consulta de Precios");
+
+                this.tbLista.Text = string.Empty;
+                this.tbMayoreo.Text = string.Empty;
+                this.lbArticulo.Text = string.Empty;
+                this.lbExistencia.Text = string.Empty;
 
                 // limpia text_box
                 this.tbCodigo.Text = string.Empty;

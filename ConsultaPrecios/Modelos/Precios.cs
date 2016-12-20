@@ -11,5 +11,6 @@ namespace ConsultaPrecios.Modelos
         public decimal precioMay { get; set; }
         public decimal precioLista { get; set; }
         public string cveArticulo { get; set; }
+        public decimal existencia { get; set; }
     }
 }
