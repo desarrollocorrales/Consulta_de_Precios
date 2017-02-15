@@ -36,8 +36,9 @@
             this.tbLista = new System.Windows.Forms.TextBox();
             this.tbMayoreo = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbArticulo = new System.Windows.Forms.Label();
             this.lbExistencia = new System.Windows.Forms.TextBox();
+            this.lbArticulo = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,6 +119,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.lbExistencia);
             this.groupBox1.Controls.Add(this.tbLista);
             this.groupBox1.Controls.Add(this.label4);
@@ -129,7 +131,17 @@
             this.groupBox1.Size = new System.Drawing.Size(743, 162);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Precio";
+            this.groupBox1.Text = "Existencia";
+            // 
+            // lbExistencia
+            // 
+            this.lbExistencia.Font = new System.Drawing.Font("Tahoma", 60F);
+            this.lbExistencia.Location = new System.Drawing.Point(6, 41);
+            this.lbExistencia.Name = "lbExistencia";
+            this.lbExistencia.ReadOnly = true;
+            this.lbExistencia.Size = new System.Drawing.Size(361, 104);
+            this.lbExistencia.TabIndex = 8;
+            this.lbExistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbArticulo
             // 
@@ -141,15 +153,14 @@
             this.lbArticulo.Text = "ARTICULO_NOMBRE";
             this.lbArticulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lbExistencia
+            // label5
             // 
-            this.lbExistencia.Font = new System.Drawing.Font("Tahoma", 60F);
-            this.lbExistencia.Location = new System.Drawing.Point(6, 41);
-            this.lbExistencia.Name = "lbExistencia";
-            this.lbExistencia.ReadOnly = true;
-            this.lbExistencia.Size = new System.Drawing.Size(361, 104);
-            this.lbExistencia.TabIndex = 8;
-            this.lbExistencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(389, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 39);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Precio";
             // 
             // Form1
             // 
@@ -184,6 +195,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lbArticulo;
         private System.Windows.Forms.TextBox lbExistencia;
+        private System.Windows.Forms.Label label5;
 
     }
 }
