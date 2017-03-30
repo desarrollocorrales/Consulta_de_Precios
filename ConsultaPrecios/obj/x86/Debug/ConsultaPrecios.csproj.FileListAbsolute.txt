@@ -9,3 +9,4 @@ G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.cspr
 G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.exe.licenses
 G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.exe
 G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.pdb
+G:\Github\Consulta_de_Precios\ConsultaPrecios\obj\x86\Debug\ConsultaPrecios.csprojResolveAssemblyReference.cache
